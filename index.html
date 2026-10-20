@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FollowTidy</title><link rel="stylesheet" href="style.css"></head>
+<body><main>
+  <header><span class="brand">◎ FollowTidy</span><span class="tag">Your list. Your choice.</span></header>
+  <section class="intro"><p class="eyebrow">A LITTLE LESS NOISE</p><h1>Make room for the<br>people you want to follow.</h1><p>Find accounts that don’t follow you back. Choose your list, review it, and unfollow from your own browser.</p></section>
+  <section class="card plan-card"><div class="heading"><h2>Your free edition</h2><span class="pill">No FollowTidy usage limit</span></div><p>Free to use. No subscription, account key, monthly counter, or app-imposed batch limit. Choose the accounts you want to unfollow and review before starting.</p><p class="muted">Unavailable profiles and accounts already unfollowed are skipped. Instagram's own restrictions still apply. The queue pauses between accounts and stops if Instagram needs attention.</p></section>
+  <div class="columns">
+    <section class="card"><h2>1. Bring your list</h2><p>Import the JSON files from your Instagram export. Everything is processed here on your computer.</p>
+      <label>Followers — include every followers_*.json file<input id="followers" type="file" accept=".json" multiple></label>
+      <label>Following — following.json<input id="following" type="file" accept=".json"></label>
+      <p id="imports" class="muted">No files imported yet.</p>
+      <details><summary>How to get these files</summary><p>In Instagram settings, find Accounts Center → Your information and permissions → Export/download your information. Choose your Instagram account, followers and following, JSON format, and the all-time date range. Download and extract the archive, then import the files above.</p><p>Use a recent, complete export. This comparison reflects that export, not live follower status.</p></details>
+      <div class="divider"></div><label>Or add usernames yourself<textarea id="manual" placeholder="@username_one&#10;@username_two" rows="4"></textarea></label><button id="add" class="secondary">Add to list</button>
+    </section>
+    <section class="card"><div class="heading"><h2>2. Choose accounts</h2><span id="count" class="pill">0 selected</span></div>
+      <input id="search" type="search" aria-label="Search accounts" placeholder="Search your list…">
+      <div class="filters"><button id="nonfollowers" class="filter active">Don’t follow back</button><button id="all" class="filter">All imported + manual</button></div>
+      <div class="actions"><button id="select" class="text-button">Select all matching</button><button id="clear" class="text-button">Clear selection</button></div>
+      <p id="empty" class="muted">Import both lists or add usernames to get started.</p><div id="list" class="list"></div>
+      <p class="muted">Checked = unfollow after review. Unchecked = keep following. “Select all matching” includes matching accounts below the scroll. Manually added names appear in both views.</p>
+    </section>
+  </div>
+  <section class="card run-card"><h2>3. Review and unfollow</h2><p>Sign in to the correct account on Instagram first, and use Instagram in English. The extension opens a separate Instagram tab and handles one selected profile at a time.</p><p class="muted">Unavailable profiles and accounts already unfollowed are skipped. Login prompts, restrictions, and uncertain results stop the queue. If an action’s outcome is uncertain, check that profile manually before starting again. This free edition cannot remove Instagram’s limits.</p>
+    <div class="actions"><button id="review">Review selected accounts</button><button id="stop" class="danger" disabled>Stop</button><button id="download" class="secondary">Save selected list</button></div>
+    <p id="status" role="status" aria-live="polite">Ready when you are.</p><ol id="log"></ol>
+  </section>
+  <footer>Desktop Chrome & Edge · Files stay local · No password collected <button id="reset" class="text-button">Clear imported data</button></footer>
+</main>
+<dialog id="confirm"><h2>Unfollow these accounts?</h2><p>This will change the Instagram account currently signed in to this browser.</p><div id="reviewList" class="review-list"></div><label class="check"><input id="ack" type="checkbox"> I checked this list and I’m signed in to the correct Instagram account.</label><p class="muted">Keep FollowTidy open while it runs. Stop prevents further clicks; an action already sent may still finish.</p><div class="actions"><button id="start" disabled>Start unfollowing</button><button id="cancel" class="secondary">Cancel</button></div></dialog>
+<script type="module" src="app.mjs"></script></body></html>
